@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,29 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <header>
+          <nav className="bg-gray-800 p-4">
+            <div className="container mx-auto flex justify-between items-center">
+              <Link href="/" className="text-white text-lg font-bold">
+                ChatGPT App
+              </Link>
+              <div>
+                <Link href="/" className="text-gray-300 hover:text-white px-3">
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-gray-300 hover:text-white px-3"
+                >
+                  About
+                </Link>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div className="flex flex-col md:flex-row">
+          <div className="flex-grow">{children}</div>
+        </div>
       </body>
     </html>
   );
